@@ -12,4 +12,6 @@ def option():
     options.add_argument('--window-size=1980,1080')
     # キャッシュを使わない  削除したはずの要素が残る場合がある
     options.add_argument("--disable-application-cache")
+    # binary path を指定
+    options.binary_location('GOOGLE_CHROME_SHIM')
     return options
