@@ -13,5 +13,5 @@ def option():
     # キャッシュを使わない  削除したはずの要素が残る場合がある
     options.add_argument("--disable-application-cache")
     # binary path を指定
-    options.binary_location(GOOGLE_CHROME_SHIM)
+    options.binary_location('/app/.chromedriver/bin/chromedriver')
     return options
