@@ -11,9 +11,10 @@ def get():
     url = 'https://tokyocatguardian.org/cats_date/'
     wait_time = 5
 
-    driver_path = '/app/.chromedriver/bin/chromedriver'
+    # driver_path = '/app/.chromedriver/bin/chromedriver'
     options = web_driver.option()
-    driver = webdriver.Chrome(options=options, executable_path=driver_path)
+    driver = webdriver.Chrome(
+        options=options, executable_path=GOOGLE_CHROME_SHIM)
     driver.get(url)
 
     driver.implicitly_wait(wait_time)
