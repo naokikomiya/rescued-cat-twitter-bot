@@ -9,5 +9,5 @@ def main():
 
 if __name__ == '__main__':
     scheduler = BlockingScheduler()
-    scheduler.add_job(main, 'interval', minutes=1)
+    scheduler.add_job(main, 'interval', minutes=10)
     scheduler.start()
