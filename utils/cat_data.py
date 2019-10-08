@@ -13,7 +13,9 @@ def get():
     wait_time = 5
 
     # driver_path = '/app/.chromedriver/bin/chromedriver'
-    driver_path = os.environ.get('GOOGLE_CHROME_SHIM')
+    driver_path = os.environ.get('GOOGLE_CHROME_BIN')
+    print(os.environ.get('GOOGLE_CHROME_BIN'))
+    print(os.environ.get('GOOGLE_CHROME_SHIM'))
     options = web_driver.option()
     driver = webdriver.Chrome(options=options, executable_path=driver_path)
     driver.get(url)
