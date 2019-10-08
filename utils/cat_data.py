@@ -13,9 +13,11 @@ def get():
     wait_time = 5
 
     # heroku上のdriverパス
-    driver_path = '/app/.chromedriver/bin/chromedriver'
+    # '/app/.chromedriver/bin/chromedriver'
+    chrome_driver_path = os.environ.get('CHROME_DRIVER_PATH')
     options = web_driver.option()
-    driver = webdriver.Chrome(options=options, executable_path=driver_path)
+    driver = webdriver.Chrome(
+        options=options, executable_path=chrome_driver_path)
     driver.get(url)
 
     driver.implicitly_wait(wait_time)

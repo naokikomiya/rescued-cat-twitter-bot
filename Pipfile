@@ -13,6 +13,7 @@ pep8 = "*"
 [packages]
 selenium = "*"
 requests-oauthlib = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.7"
