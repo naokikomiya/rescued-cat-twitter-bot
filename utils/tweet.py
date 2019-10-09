@@ -1,19 +1,18 @@
 import json
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from requests_oauthlib import OAuth1Session
 
 from . import cat_data
 from config import settings
 
 
-def post():
+def post(url, xpath1, xpath2):
     end_point_media = "https://upload.twitter.com/1.1/media/upload.json"
     end_point_text = "https://api.twitter.com/1.1/statuses/update.json"
     image_path = './cat.png'
-    cat_page_url = cat_data.get()
-    message = f'\n✦里親を募集しています \n\n {cat_page_url} \n\n#拡散\n#してくれると\n#うれしい\n#けど'
+    # このタイミングで画像もダウンロードされる
+    cat_page_url = cat_data.get(url, xpath1, xpath2)
+    message = f'そうです、ネコです。里親を募集しています、はい。\n\n●タイミングの関係で譲渡が決定している場合があります。\n●譲渡不適格として里親対象から外れてしまう場合があります。\n\n\n {cat_page_url}'
 
     # OAuth認証 セッションを開始
     twitter = OAuth1Session(settings.CONSUMER_KEY,
