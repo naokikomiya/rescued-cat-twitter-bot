@@ -16,22 +16,20 @@ def main():
                    xpath2='//*[@id="slider"]/div[1]/div[1]/div/div[1]/div/img',
                    xpath3='/html/body/main/div/div[3]/ul/li[1]/h2')
 
-    tweet_tokyo_cat_gardian()
-    tweet_satooya_boshu()
-    # scheduler = BlockingScheduler()
-    # japan_hour = 18
-    # utc = japan_hour - 9
-    # scheduler.add_job(tweet_tokyo_cat_gardian,
-    #                   'interval',
-    #                   start_date=f"2019-10-10 {utc}:00:00",
-    #                   days=2)
-    # scheduler.add_job(tweet_satooya_boshu,
-    #                   'interval',
-    #                   start_date=f"2019-10-11 {utc}:00:00",
-    #                   days=2)
-    # # scheduler.add_job(main, 'interval', seconds=5)
-    # scheduler.start()
-    # print('start scheduler')
+    scheduler = BlockingScheduler()
+    japan_hour = 18
+    utc = japan_hour - 9
+    scheduler.add_job(tweet_tokyo_cat_gardian,
+                      'interval',
+                      start_date=f"2019-10-10 {utc}:00:00",
+                      days=2)
+    scheduler.add_job(tweet_satooya_boshu,
+                      'interval',
+                      start_date=f"2019-10-11 {utc}:00:00",
+                      days=2)
+    # scheduler.add_job(main, 'interval', seconds=5)
+    scheduler.start()
+    print('start scheduler')
 
 
 if __name__ == '__main__':
