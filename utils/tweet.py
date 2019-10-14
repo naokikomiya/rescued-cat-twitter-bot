@@ -6,13 +6,18 @@ from . import cat_data
 from config import settings
 
 
-def post(url, xpath1, xpath2):
+def post(url, xpath1, xpath2, xpath3):
     end_point_media = "https://upload.twitter.com/1.1/media/upload.json"
     end_point_text = "https://api.twitter.com/1.1/statuses/update.json"
     image_path = './cat.png'
     # このタイミングで画像もダウンロードされる
-    cat_page_url = cat_data.get(url, xpath1, xpath2)
-    message = f'そうです、ネコです。里親を募集しています、はい。\n\n●タイミングの関係で譲渡が決定している場合があります。\n●譲渡不適格として里親対象から外れてしまう場合があります。\n\n\n {cat_page_url}'
+    cat_data_dict = cat_data.get(url, xpath1, xpath2, xpath3)
+    cat_page_url = cat_data_dict['url']
+    page_title = ''
+    if xpath3:
+        page_title = f"✦ {cat_data_dict['title']} ✦"
+
+    message = f'そうです、ネコです。#里親募集 しています、はい。\n\n●掲載タイミングの関係等で既に譲渡されていたり体調によって譲渡対象から外れている場合があります\n●里親お申し込み方法は各ページを参照してください\n\n{cat_page_url}\n\n{page_title}'
 
     # OAuth認証 セッションを開始
     twitter = OAuth1Session(settings.CONSUMER_KEY,

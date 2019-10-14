@@ -7,7 +7,7 @@ from selenium import webdriver
 from utils import driver_option
 
 
-def get(url, xpath1, xpath2):
+def get(url, xpath1, xpath2, xpath3):
     # heroku上のdriverパス
     # '/app/.chromedriver/bin/chromedriver'
     options = driver_option.get()
@@ -33,8 +33,10 @@ def get(url, xpath1, xpath2):
     random_number = random.randint(0, (cats_link_length - 1))
     # ランダムに１ネコ選びリンク先へ遷移
     cats_link_list[random_number].click()
+    # return する空のdictionaryで定義
+    cat_data_dict = {}
     # 詳細ページのURLを取得(ツイート文言に入れるためreturnする)
-    cat_page_url = driver.current_url
+    cat_data_dict['url'] = driver.current_url
 
     # 詳細ページの大きい画像要素を取得
     cat_img = driver.find_element_by_xpath(
@@ -44,5 +46,8 @@ def get(url, xpath1, xpath2):
     # プロジェクトルートに保存
     request.urlretrieve(img_url, 'cat.png')
 
-    print(cat_page_url)
-    return cat_page_url
+    if xpath3:
+        cat_data_dict['title'] = driver.find_element_by_xpath(xpath3).text
+
+    print(cat_data_dict)
+    return cat_data_dict
