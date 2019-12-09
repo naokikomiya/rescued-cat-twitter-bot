@@ -14,7 +14,7 @@ def main():
         tweet.post(url='https://satoya-boshu.net/foster/?@button_name@=search&FosterParent_CategoryID=1',
                    xpath1='/html/body/main/div/div[3]/div[2]/ul[2]/li',
                    xpath2='//*[@id="slider"]/div[1]/div[1]/div/div[1]/div/img',
-                   xpath3='/html/body/main/div/div[3]/ul/li[1]/h2')
+                   xpath3='/html/body/main/div/div[4]/ul/li[1]/h2')
 
     scheduler = BlockingScheduler()
     japan_hour = 18
@@ -34,3 +34,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
