@@ -8,6 +8,14 @@ from utils import driver_option
 
 
 def get(url, xpath1, xpath2, xpath3):
+    """ 保護猫サイトからURL,画像,(タイトルテキスト)をスクレイピングする
+
+    Parameter
+    ---------
+    xpath1, xpath2, xpath3 : str
+        取得要素へ到達するまでのxpath
+        cat_data.pyのget()メソッドへわたす
+    """
     # heroku上のdriverパス
     # '/app/.chromedriver/bin/chromedriver'
     options = driver_option.get()
@@ -15,18 +23,17 @@ def get(url, xpath1, xpath2, xpath3):
     driver = webdriver.Chrome(
         options=options, executable_path=chrome_driver_path)
 
+    # 要素が見つかるまで繰り返し取得する時間のリミット値
     wait_time = 5
     # 一度設定すればOK
     driver.implicitly_wait(wait_time)
-
-    # URLを開く
+    # 一覧ページのURL
     all_cats_url = url
+    # 一覧ページのURLを開く
     driver.get(all_cats_url)
-
     # ページ内のネコリンクを配列で取得
     cats_link_list = driver.find_elements_by_xpath(
         xpath1)
-
     # ページ内に表示されているネコの数
     cats_link_length = len(cats_link_list)
     # ネコ数内で乱数生成
@@ -37,7 +44,6 @@ def get(url, xpath1, xpath2, xpath3):
     cat_data_dict = {}
     # 詳細ページのURLを取得(ツイート文言に入れるためreturnする)
     cat_data_dict['url'] = driver.current_url
-
     # 詳細ページの大きい画像要素を取得
     cat_img = driver.find_element_by_xpath(
         xpath2)
@@ -45,7 +51,7 @@ def get(url, xpath1, xpath2, xpath3):
     img_url = cat_img.get_attribute('src')
     # プロジェクトルートに保存
     request.urlretrieve(img_url, 'cat.png')
-
+    # https://satoya-boshu.net/foster/ではタイトルも取得
     if xpath3:
         cat_data_dict['title'] = driver.find_element_by_xpath(xpath3).text
 

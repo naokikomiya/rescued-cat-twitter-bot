@@ -2,6 +2,7 @@ from selenium.webdriver.chrome.options import Options
 
 
 def get():
+    """ utils/cat.pyで起動するchrome driverのオプションを設定しoptionsとして返す。 """
     # ブラウザ起動オプション
     options = Options()
     # ヘッドレスブラウザで実行
@@ -15,7 +16,7 @@ def get():
     # 画面サイズにより要素のxpathが変わる事があるのでサイズを決めておく
     # options.add_argument('--window-size=1980,1080')
     options.add_argument('--start-maximized')
-    # キャッシュを使わない  削除したはずの要素が残る場合がある
+    # キャッシュを使わない(削除したはずの要素が残る場合があるため)
     options.add_argument('--disable-application-cache')
     # binary path を指定
     return options
