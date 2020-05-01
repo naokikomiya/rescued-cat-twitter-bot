@@ -3,5 +3,4 @@
 This account regularly tweetes rescued-cat information.
 
 twitter: https://twitter.com/rescued_cat
-
-![screen_shot](src='https://gyazo.com/b8353125f501766a2df701d2a4a4b9e2')
+![rescued_cat](https://user-images.githubusercontent.com/26497221/80783915-4ec40780-8bb6-11ea-8155-85606a663ab8.png)
